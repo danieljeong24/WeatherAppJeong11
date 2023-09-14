@@ -15,7 +15,6 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @State
     var body: some View {
         ZStack{
             BackgroundView(topColor: .blue, bottomColor: .purple )
