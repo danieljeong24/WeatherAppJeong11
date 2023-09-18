@@ -9,15 +9,24 @@
  *  Assignment: PEX 1
  * Feature Added:
  *  Documentation Statement:
+ * Used the template code for weather view model to pull data from JSON files 
  */
 
+import CoreLocation
 import SwiftUI
 
 struct ContentView: View {
     
+    //How can you make struct hold state
+    //
+    @State private var isNight = false
+    //CLLocationManager to pull current location
+    @ObservedObject var locationManager = LocationManager()
+
+    
     var body: some View {
         ZStack{
-            BackgroundView(topColor: .blue, bottomColor: .purple )
+            BackgroundView(topColor: isNight ? .black: .blue, bottomColor: isNight ? .gray : .purple )
              
             VStack{
                 CityTextView(cityName: "Colorado Springs, CO")
@@ -34,16 +43,23 @@ struct ContentView: View {
                     
                 }
                 Spacer() //vstack is the whole length of the screen but the rest of the space below the text is free to use
+                if let location = locationManager.currentLocation {
+                                Text("Latitude: \(location.coordinate.latitude)")
+                                Text("Longitude: \(location.coordinate.longitude)")
+                            } else {
+                                Text("Fetching Location...")
+                            }
                 
                 Button{
-                    print("tapped")
+                    //toggles the var from false to true
+                    isNight.toggle()
                 } label:{
                     //label is what the button looks like
                     WeatherButton(title: "Change Day Time", textColor: .blue, backgroundColor: .white)
                      
                 }
                 
-                //Space co unts as a view, You can only have 10 views so no more than 11 views
+                //Space counts as a view, You can only have 10 views so no more than 11 views
                 Spacer()
             }
             
