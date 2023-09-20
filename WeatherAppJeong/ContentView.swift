@@ -9,7 +9,9 @@
  *  Assignment: PEX 1
  * Feature Added:
  *  Documentation Statement:
- * Used the template code for weather view model to pull data from JSON files 
+ * Used the template code for weather view model to pull data from JSON files
+ *https://www.tutorialspoint.com/swift-program-to-convert-fahrenheit-to-celsius#:~:text=Swift%20provides%20good%20support%20to,to%20convert%20Fahrenheit%20to%20Celsius.
+* Used this link above to convert farehnheit to celsius
  */
 
 import CoreLocation
@@ -20,35 +22,75 @@ struct ContentView: View {
     //How can you make struct hold state
     //
     @State private var isNight = false
-    //CLLocationManager to pull current location
     @ObservedObject var locationManager = LocationManager()
-
+    //CLLocationManager to pull current location
     
+    //Variables to store latitude and longtitude
+    
+    // Create an observed object property wrapper to an instance of WeatherViewMode.
+    // SwiftUI watches this object for any changes to update the UI accordingly.
+    @ObservedObject var viewModel = WeatherViewModel()
+    
+
+    //Text("Latitude: \(location.coordinate.latitude)")
+    //Text("Longitude: \(location.coordinate.longitude)")
     var body: some View {
         ZStack{
             BackgroundView(topColor: isNight ? .black: .blue, bottomColor: isNight ? .gray : .purple )
              
             VStack{
-                CityTextView(cityName: "Colorado Springs, CO")
+                let location = locationManager.currentLocation
+                let latitude  = location?.coordinate.latitude
+                let longitude = location?.coordinate.longitude
+ 
+                Button(action: {
+                    
+                    // Creates a new task to run the getCoordinates method asynchronously.
+                    Task {
+                        
+                        // A do-catch block to try calling the async method and
+                        //  handle any errors that might occur.
+                        do {
+                            
+                            // Calls the getCoordinates method asynchronously using await
+                            // If the method throws an error, it will be caught in the catch block
+                            try await viewModel.getCityForLatLong(latitude: latitude ?? 33.8703, longitude: longitude ?? -117.9253)
+                            
+                        } catch {
+                            
+                            // Catches any errors thrown by the
+                            //  getCoordinates method and prints an
+                            //  error message to the console.
+                            print("An error occurred: \(error)")
+                        }
+                    }
+                }) {
+                    Text("Get Weather") // The label for the button
+                        .foregroundColor(Color.white)
+                        .frame(width: 280, height: 50)
+                }
+                if let location1 = locationManager.currentLocation {
+                                Text("Latitude: \(location1.coordinate.latitude)")
+                                Text("Longitude: \(location1.coordinate.longitude)")
+                            } else {
+                                Text("Fetching Location...")
+                            }
+         
+
+                CityTextView(cityName: viewModel.cityName)
                 
                 MainWeatherStatusView(imageName: "cloud.sun.fill", temperature: 77)
+                
                 
                 HStack(spacing: 20){
                     WeatherDayView(dayOfWeek: "TUES", imageName: "cloud.sun.fill", temp: 69)
                     WeatherDayView(dayOfWeek: "WED", imageName: "cloud.snow.fill", temp: 25)
                     WeatherDayView(dayOfWeek: "THUR", imageName: "sun.max.fill", temp: 88)
-                    WeatherDayView(dayOfWeek: "FRI", imageName: "cloud.bolt.rain.fill", temp: 45)
-                    WeatherDayView(dayOfWeek: "SAT", imageName: "sunset.fill", temp: 72)
                     
                     
                 }
                 Spacer() //vstack is the whole length of the screen but the rest of the space below the text is free to use
-                if let location = locationManager.currentLocation {
-                                Text("Latitude: \(location.coordinate.latitude)")
-                                Text("Longitude: \(location.coordinate.longitude)")
-                            } else {
-                                Text("Fetching Location...")
-                            }
+                
                 
                 Button{
                     //toggles the var from false to true
@@ -92,8 +134,11 @@ struct WeatherDayView: View {
                 .aspectRatio(contentMode: .fit)
             //make a frame to give it a fixd size
                 .frame(width: 40, height: 40)
-            Text("\(temp)°")
-                .font(.system(size: 28, weight: .medium))
+            Text("High \(temp)°F")
+                .font(.system(size: 20, weight: .medium))
+                .foregroundColor(.white)
+            Text("Low \(temp)°F")
+                .font(.system(size: 20, weight: .medium))
                 .foregroundColor(.white)
             
         }
@@ -134,14 +179,27 @@ struct MainWeatherStatusView: View{
                 // fits it within the frame
                 .aspectRatio(contentMode: .fit)
                 //make a frame to give it a fixd size
-                .frame(width: 180, height: 180)
+                .frame(width: 100, height: 100)
                 
-                Text("\(temperature)°")
-                .font(.system(size: 70, weight: .medium))
+            HStack{
+                Text("\(temperature)°F |" )
+                .font(.system(size: 25, weight: .medium))
+                .foregroundColor(.white)
+                
+                Text("\((temperature-32)*5/9)°C")
+                .font(.system(size: 25, weight: .medium))
+                .foregroundColor(.white)
+                
+            }
+    
+       
+                
+                Text("3-day Forecast")
+                .font(.system(size: 30, weight: .medium))
                 .foregroundColor(.white)
                 
         }
-        .padding(.bottom, 40)
+        .padding(.bottom, 10)
     }
 }
 

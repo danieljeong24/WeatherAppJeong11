@@ -15,21 +15,23 @@ struct OpenCageResponse: Decodable {
 }
 
 struct OpenCageResult: Decodable {
-    let geometry: OpenCageGeometry
-    let main: OpenMain
+    let components: OpenCageComponents
 }
 
-struct OpenCageGeometry: Decodable {
-    let lat: Double
-    let lng: Double
+struct OpenCageComponents: Decodable{
+    let city: String
 }
 
 struct OpenWeatherResponse: Decodable {
-    let weather: [OpenWeather]
+    let currentweather: [OpenCurrentWeather]
+    let main: [OpenMain]
 }
 
-struct OpenWeather: Decodable {
-    let description: String
+struct OpenCurrentWeather: Decodable {
+    let temperature: Float
+    let windspeed: Float
+    let winddirection: Int
+    let weathercode: Int
 }
 struct OpenMain: Decodable
 {

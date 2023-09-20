@@ -2,7 +2,7 @@
 //  WeatherViewModel.swift
 //  geocoding_and weather_web
 //
-//  Created by Daniel Jeong on 9/7/23.
+//  Created by Chad on 9/7/23.
 //
 
 import Foundation
@@ -16,67 +16,58 @@ class WeatherViewModel: ObservableObject {
     // A published property wrapper that notifies its subscribers about changes to 'weatherDetails' string
     // which will help in automatically updating the UI when this property changes.
     @Published var weatherDetails: String = ""
+    @Published var cityName: String = ""
+    @Published var currentTemp: Float = 0.0
+    @Published var windspeed: Float = 0.0
+    @Published var winddirection: Float = 0.0
     
     // A set to store any cancellable operations.
     // This is used to store references to network data tasks
     //  so they can be cancelled if needed.
     private var cancellables = Set<AnyCancellable>()
     
-    // An asynchronous function that tries to get geo-coordinates from the given address.
-    // It may throw errors which should be handled by the caller.
-    func getWeatherForLocation(address: String) async throws {
+    //asynchronous function to get city given latitude and longitude
+    func getCityForLatLong(latitude: Double, longitude: Double) async throws  {
         
-        weatherDetails=""
+        cityName=""
         
-        // Step 1: Constructing the URL
-        // Encoding the address string to safely include it in a URL.
-        let encodedAddress = address.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
-        
-        // Constructing the URL string using the encoded address.
-        let url:String = "https://api.opencagedata.com/geocode/v1/json?q=\(encodedAddress))&key=46928845ebb9451b92671562d811794d"
-        
-        // Checking if the URL is valid, if not print an error and return.
-        guard let openCageURL = URL(string:url)
-        else
-        {
-            print("Invalid address or URL")
+        // Step 1: Constructing the URL for fetching weather data.
+        // Creating a URL to fetch weather data based on the provided latitude and longitude.
+        guard let weatherURL = URL(string: "https://api.opencagedata.com/geocode/v1/json?q=\(latitude)+\(longitude)&key=1b4c15a80e764b62922872339c99f30b")
+        else {
+            print("Invalid URL")
             return
         }
         
-        // Initiating a do-catch block to handle potential errors
-        //  during the network request and JSON decoding process.
+        // Initiating another do-catch block to handle potential errors during the network request and JSON decoding process.
         do {
             
-            // Step 2: Making a network request to fetch coordinates.
+            // Step 2: Making a network request to fetch weather data.
             // Making an asynchronous network request to get data and response from the URL.
-            let (data, response) = try await URLSession.shared.data(from: openCageURL)
+            let (data, response) = try await URLSession.shared.data(from: weatherURL)
             
             // Step 3: Checking the response code to ensure the response is successful (status code 200).
-            guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200
-            else
-            {
+            guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
                 throw URLError(.badServerResponse)
             }
             
-            // Step 4: Decoding the JSON data to extract coordinates.
-            // Decoding the received data to 'OpenCageResponse' model to extract the coordinates.
+            // Step 4: Decoding the JSON data to extract weather details.
+            // Decoding the received data to 'OpenWeatherResponse' model to extract the weather details.
             let openCageResponse = try JSONDecoder().decode(OpenCageResponse.self, from: data)
             
-            // Checking if coordinates are present and
-            //  then fetching weather data using those coordinates.
-            if let lat = openCageResponse.results.first?.geometry.lat,
-                let lon = openCageResponse.results.first?.geometry.lng {
-                
-                // Step 5: Initiating a call to fetch weather data using the coordinates retrieved.
-                try await getWeatherForLatLong(latitude: lat, longitude: lon)
+            // Step 5: Updating the UI with weather details.
+            // Switching to the main thread to update the 'weatherDetails' property with fetched weather description.
+            // This will automatically update the UI since 'weatherDetails' is marked with the @Published property wrapper.
+            DispatchQueue.main.async {
+                self.cityName = "\(openCageResponse.results.first?.components.city ?? "No description available")"
             }
         } catch {
             
-            // Handling and printing errors that might occur
-            //  during the network request or JSON decoding.
-            print("Failed to get coordinates: \(error)")
+            // Handling and printing errors that might occur during the network request or JSON decoding.
+            print("Failed to get city of lat and long: \(error)")
         }
     }
+
     
     // An asynchronous function to fetch weather data for given latitude and longitude.
     // It may throw errors which need to be handled by the caller.
@@ -121,6 +112,8 @@ class WeatherViewModel: ObservableObject {
         }
     }
 }
+
+
 
 
 

@@ -11,7 +11,6 @@ import CoreLocation
 class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     private var locationManager = CLLocationManager()
     @Published var currentLocation: CLLocation?
-
     override init() {
         super.init()
         self.locationManager.delegate = self
