@@ -11,6 +11,7 @@
  *  Documentation Statement:
  * Used the template code for weather view model to pull data from JSON files
  *https://www.tutorialspoint.com/swift-program-to-convert-fahrenheit-to-celsius#:~:text=Swift%20provides%20good%20support%20to,to%20convert%20Fahrenheit%20to%20Celsius.
+ *https://stackoverflow.com/questions/56828331/display-a-float-with-specified-decimal-places-in-swiftui
 * Used this link above to convert farehnheit to celsius
  */
 
@@ -35,13 +36,19 @@ struct ContentView: View {
     //Text("Latitude: \(location.coordinate.latitude)")
     //Text("Longitude: \(location.coordinate.longitude)")
     var body: some View {
+        let location = locationManager.currentLocation
+        let latitude  = location?.coordinate.latitude
+        let longitude = location?.coordinate.longitude
+        
+        
+        
         ZStack{
             BackgroundView(topColor: isNight ? .black: .blue, bottomColor: isNight ? .gray : .purple )
-             
+            
+            
             VStack{
-                let location = locationManager.currentLocation
-                let latitude  = location?.coordinate.latitude
-                let longitude = location?.coordinate.longitude
+                
+                
                 
  
                 Button(action: {
@@ -56,6 +63,7 @@ struct ContentView: View {
                             // Calls the getCoordinates method asynchronously using await
                             // If the method throws an error, it will be caught in the catch block
                             try await viewModel.getCityForLatLong(latitude: latitude ?? 33.8703, longitude: longitude ?? -117.9253)
+                            try await viewModel.getWeatherForLatLong(latitude: latitude ?? 33.8703, longitude: longitude ?? -117.9253)
                             
                         } catch {
                             
@@ -80,7 +88,8 @@ struct ContentView: View {
 
                 CityTextView(cityName: viewModel.cityName)
                 
-                MainWeatherStatusView(imageName: "cloud.sun.fill", temperature: 77)
+                MainWeatherStatusView(imageName: "cloud.sun.fill", temperature: viewModel.currentTemp,
+                                      windSpeed: viewModel.windspeed, windDirection: viewModel.winddirection)
                 
                 
                 HStack(spacing: 20){
@@ -108,7 +117,30 @@ struct ContentView: View {
             
             
         }
+        .onAppear{
+        Task(priority: .background){
+            Task {
+                
+                // A do-catch block to try calling the async method and
+                //  handle any errors that might occur.
+                do {
+                    
+                    // Calls the getCoordinates method asynchronously using await
+                    // If the method throws an error, it will be caught in the catch block
+                    try await viewModel.getCityForLatLong(latitude: latitude ?? 33.8703, longitude: longitude ?? -117.9253)
+                    
+                } catch {
+                    
+                    // Catches any errors thrown by the
+                    //  getCoordinates method and prints an
+                    //  error message to the console.
+                    print("An error occurred: \(error)")
+                }
+            }
+        }
     }
+    }
+        
 }
 
 struct ContentView_Previews: PreviewProvider {
@@ -170,7 +202,9 @@ struct CityTextView: View{
 
 struct MainWeatherStatusView: View{
     var imageName: String
-    var temperature: Int
+    var temperature: Float
+    var windSpeed: Float
+    var windDirection: Int
     var body: some View{
         VStack(spacing: 10){
             Image(systemName: imageName)
@@ -183,11 +217,13 @@ struct MainWeatherStatusView: View{
                 .frame(width: 100, height: 100)
                 
             HStack{
-                Text("\(temperature)°F |" )
+                Text("\(Int(temperature))°F |" )
                 .font(.system(size: 25, weight: .medium))
                 .foregroundColor(.white)
                 
-                Text("\((temperature-32)*5/9)°C")
+                let celsius = (temperature - 32) * 5/9
+                let formattedFloat = String(format: "%.1f", celsius)
+                Text("\(formattedFloat)°C")
                 .font(.system(size: 25, weight: .medium))
                 .foregroundColor(.white)
                 
