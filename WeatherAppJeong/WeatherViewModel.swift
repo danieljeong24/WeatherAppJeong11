@@ -19,7 +19,7 @@ class WeatherViewModel: ObservableObject {
     @Published var cityName: String = ""
     @Published var currentTemp: Float = 0.0
     @Published var windspeed: Float = 0.0
-    @Published var winddirection: Float = 0.0
+    @Published var winddirection: Int = 0
     
     // A set to store any cancellable operations.
     // This is used to store references to network data tasks
@@ -73,11 +73,10 @@ class WeatherViewModel: ObservableObject {
     // It may throw errors which need to be handled by the caller.
     func getWeatherForLatLong(latitude: Double, longitude: Double) async throws  {
         
-        weatherDetails=""
         
         // Step 1: Constructing the URL for fetching weather data.
         // Creating a URL to fetch weather data based on the provided latitude and longitude.
-        guard let weatherURL = URL(string: "https://api.openweathermap.org/data/2.5/weather?lat=\(latitude)&lon=\(longitude)&appid=3132aec7af5def9f379ab3785edae6fc")
+        guard let weatherURL = URL(string: "https://api.open-meteo.com/v1/forecast?latitude=\(latitude)&longitude=\(longitude)&daily=weathercode,temperature_2m_max,temperature_2m_min,windspeed_10m_max,winddirection_10m_dominant&current_weather=true&temperature_unit=fahrenheit&windspeed_unit=mph&timezone=America%2FDenver&forecast_days=3")
         else {
             print("Invalid URL")
             return
@@ -103,7 +102,12 @@ class WeatherViewModel: ObservableObject {
             // Switching to the main thread to update the 'weatherDetails' property with fetched weather description.
             // This will automatically update the UI since 'weatherDetails' is marked with the @Published property wrapper.
             DispatchQueue.main.async {
-                self.weatherDetails = "Weather Info: \(weatherResponse.weather.first?.description ?? "No description available")"
+                self.currentTemp = weatherResponse.current_weather.temperature
+                self.windspeed = weatherResponse.current_weather.windspeed
+                self.winddirection = weatherResponse.current_weather.winddirection
+                
+                //self.winddirection = "Current Temp: \(weatherResponse.current_weather.first?.winddirection ?? "No description available")"
+                
             }
         } catch {
             

@@ -42,6 +42,7 @@ struct ContentView: View {
                 let location = locationManager.currentLocation
                 let latitude  = location?.coordinate.latitude
                 let longitude = location?.coordinate.longitude
+                
  
                 Button(action: {
                     

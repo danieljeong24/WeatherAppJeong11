@@ -23,8 +23,7 @@ struct OpenCageComponents: Decodable{
 }
 
 struct OpenWeatherResponse: Decodable {
-    let currentweather: [OpenCurrentWeather]
-    let main: [OpenMain]
+    let current_weather: OpenCurrentWeather
 }
 
 struct OpenCurrentWeather: Decodable {
@@ -33,14 +32,6 @@ struct OpenCurrentWeather: Decodable {
     let winddirection: Int
     let weathercode: Int
 }
-struct OpenMain: Decodable
-{
-    let temp: Float
-    let feels_like: Float
-    let temp_min: Float
-    let temp_max: Float
-    let pressure: Float
-    let humidity: Float
-}
+
 
 
