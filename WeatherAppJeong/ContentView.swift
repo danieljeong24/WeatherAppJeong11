@@ -14,6 +14,9 @@
  *https://stackoverflow.com/questions/56828331/display-a-float-with-specified-decimal-places-in-swiftui
  *https://stackoverflow.com/questions/26441733/functions-returning-a-string-swift
  * I used the website above to understand how to make a function that returns a string to get the right SF symbol depending on the weather code
+ * I used ChatGPT quite often to debug some of my code. I will attached my prompts in a word document
+ *https://developer.apple.com/tutorials/swiftui/drawing-paths-and-shapes
+ * Used the link/tutorial to recall how to rotate a symbol
  
 * Used this link above to convert farehnheit to celsius
  */
@@ -50,13 +53,6 @@ struct ContentView: View {
             
             
             VStack{
-                if let location1 = locationManager.currentLocation {
-                                Text("Latitude: \(location1.coordinate.latitude)")
-                                Text("Longitude: \(location1.coordinate.longitude)")
-                            } else {
-                                Text("Fetching Location...")
-                            }
-         
 
                 CityTextView(cityName: viewModel.cityName)
                 
@@ -73,6 +69,7 @@ struct ContentView: View {
                 }
                 Spacer() //vstack is the whole length of the screen but the rest of the space below the text is free to use
                 
+                WindSpeedView(degrees: viewModel.winddirection, windspeed: viewModel.windspeed)
                 
                 Button{
                     //toggles the var from false to true
@@ -172,6 +169,66 @@ struct CityTextView: View{
     }
 }
 
+struct SunsetSunriseView: View{
+    var sunriseTime: String
+    var sunsetTime: String
+    var body: some View{
+        VStack{
+            HStack{
+                Text("Sunrise")
+                    //order of modifiers matter
+                    .font(.system(size: 32, weight: .medium, design: .default))
+                    .foregroundColor(.white)
+                    .padding()
+                Text("Sunset")
+                    //order of modifiers matter
+                    .font(.system(size: 32, weight: .medium, design: .default))
+                    .foregroundColor(.white)
+                    .padding()
+            }
+        }
+        
+    }
+}
+
+struct WindSpeedView: View{
+    var degrees: Int
+    var windspeed: Float
+    var body: some View{
+        VStack(spacing: 5){
+            HStack(spacing: 40){
+                Image(systemName: "wind")
+                    .renderingMode(.original)
+                //make your image resizable
+                    .resizable()
+                //fits it within the frame
+                    .aspectRatio(contentMode: .fit)
+                //make a frame to give it a fixd size
+                    .frame(width: 40, height: 40)
+                Image(systemName: "location.north.fill")
+                    .renderingMode(.original)
+                //make your image resizable
+                    .resizable()
+                //fits it within the frame
+                    .aspectRatio(contentMode: .fit)
+                //make a frame to give it a fixd size
+                    .frame(width: 40, height: 40)
+                    .rotationEffect(Angle(degrees: Double(degrees)))
+                
+            }
+            .padding(.bottom, 15)
+            Text("Wind out of \(degrees)°")
+                .font(.system(size: 20, weight: .medium))
+                .foregroundColor(.white)
+            let formattedFloat = String(format: "%.1f", windspeed)
+            Text("Current Windspeed: \(formattedFloat) mph")
+                .font(.system(size: 20, weight: .medium))
+                .foregroundColor(.white)
+        }
+        .padding(.bottom, 40)
+    }
+}
+
 struct MainWeatherStatusView: View{
     var imageName: String
     var temperature: Float
@@ -212,6 +269,8 @@ struct MainWeatherStatusView: View{
         .padding(.bottom, 10)
     }
 }
+
+
 
 func getSymbol(value: Int) -> String{
     var symbolstring = ""

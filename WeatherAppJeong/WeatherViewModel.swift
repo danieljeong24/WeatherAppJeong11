@@ -33,8 +33,7 @@ class WeatherViewModel: ObservableObject {
     
     //asynchronous function to get city given latitude and longitude
     func getCityForLatLong(latitude: Double, longitude: Double) async throws  {
-        
-        cityName=""
+    
         
         // Step 1: Constructing the URL for fetching weather data.
         // Creating a URL to fetch weather data based on the provided latitude and longitude.
