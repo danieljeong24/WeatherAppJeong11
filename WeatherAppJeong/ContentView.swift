@@ -7,7 +7,8 @@
 
 /*  Name: Daniel Jeong
  *  Assignment: PEX 1
- * Feature Added:
+ * Feature Added: Additional Info about time for sunrise and sunset for that current day.
+ * Another feature is a button that lets you switch from light to dark mode
  *  Documentation Statement:
  * Used the template code for weather view model to pull data from JSON files
  *https://www.tutorialspoint*.com/swift-program-to-convert-fahrenheit-to-celsius#:~:text=Swift%20provides%20good%20support%20to,to%20convert%20Fahrenheit%20to%20Celsius.
@@ -105,6 +106,7 @@ struct ContentView: View {
                     
                     // Calls the getCoordinates method asynchronously using await
                     // If the method throws an error, it will be caught in the catch block
+                    //Putting in a default latitude and longitude so I can see in the preview canvas
                     try await viewModel.getCityForLatLong(latitude: latitude ?? 33.8703, longitude: longitude ?? -117.9253)
                     try await viewModel.getWeatherForLatLong(latitude: latitude ?? 33.8703, longitude: longitude ?? -117.9253)
                     
