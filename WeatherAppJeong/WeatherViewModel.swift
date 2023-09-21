@@ -2,7 +2,7 @@
 //  WeatherViewModel.swift
 //  geocoding_and weather_web
 //
-//  Created by Chad on 9/7/23.
+//  Created by Jeong on 9/21/23.
 //
 
 import Foundation
