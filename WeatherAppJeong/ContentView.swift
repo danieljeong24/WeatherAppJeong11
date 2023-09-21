@@ -59,6 +59,14 @@ struct ContentView: View {
                 MainWeatherStatusView(imageName: getSymbol(value: viewModel.currentWeatherCode), temperature: viewModel.currentTemp,
                                       windSpeed: viewModel.windspeed, windDirection: viewModel.winddirection)
                 
+                SunsetSunriseView(sunriseTime: "00:00", sunsetTime: "00:00")
+                
+                
+                Text("3-day Forecast")
+                .font(.system(size: 30, weight: .medium))
+                .foregroundColor(.white)
+                .padding(.bottom, 10)
+                
                 
                 HStack(spacing: 20){
                     WeatherDayView(dayOfWeek: viewModel.times[0], imageName: getSymbol(value: viewModel.weathercodes[0]), maxtemp: viewModel.tempMax[0], mintemp: viewModel.tempMin[0])
@@ -173,20 +181,55 @@ struct SunsetSunriseView: View{
     var sunriseTime: String
     var sunsetTime: String
     var body: some View{
-        VStack{
             HStack{
-                Text("Sunrise")
-                    //order of modifiers matter
-                    .font(.system(size: 32, weight: .medium, design: .default))
-                    .foregroundColor(.white)
-                    .padding()
-                Text("Sunset")
-                    //order of modifiers matter
-                    .font(.system(size: 32, weight: .medium, design: .default))
-                    .foregroundColor(.white)
-                    .padding()
+                VStack(spacing: -25){
+                    Text("Sunrise")
+                        //order of modifiers matter
+                        .font(.system(size: 25, weight: .medium, design: .default))
+                        .foregroundColor(.white)
+                        .padding()
+                    HStack{
+                        Image(systemName: "sunrise.circle.fill")
+                            .renderingMode(.original)
+                        //make your image resizable
+                            .resizable()
+                        //fits it within the frame
+                            .aspectRatio(contentMode: .fit)
+                        //make a frame to give it a fixd size
+                            .frame(width: 40, height: 40)
+                        Text(sunriseTime)
+                            //order of modifiers matter
+                            .font(.system(size: 25, weight: .medium, design: .default))
+                            .foregroundColor(.white)
+                            .padding()
+                    }
+                    
+                    
+                }
+                VStack(spacing: -25){
+                    Text("Sunset")
+                        //order of modifiers matter
+                        .font(.system(size: 25, weight: .medium, design: .default))
+                        .foregroundColor(.white)
+                        .padding()
+                    HStack{
+                        Image(systemName: "sunset.circle.fill")
+                            .renderingMode(.original)
+                        //make your image resizable
+                            .resizable()
+                        //fits it within the frame
+                            .aspectRatio(contentMode: .fit)
+                        //make a frame to give it a fixd size
+                            .frame(width: 40, height: 40)
+                        Text(sunriseTime)
+                            //order of modifiers matter
+                            .font(.system(size: 25, weight: .medium, design: .default))
+                            .foregroundColor(.white)
+                            .padding()
+                    }
+                }
+                
             }
-        }
         
     }
 }
@@ -261,9 +304,7 @@ struct MainWeatherStatusView: View{
     
        
                 
-                Text("3-day Forecast")
-                .font(.system(size: 30, weight: .medium))
-                .foregroundColor(.white)
+                
                 
         }
         .padding(.bottom, 10)
