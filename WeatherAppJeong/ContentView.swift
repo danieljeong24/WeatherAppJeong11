@@ -10,8 +10,11 @@
  * Feature Added:
  *  Documentation Statement:
  * Used the template code for weather view model to pull data from JSON files
- *https://www.tutorialspoint.com/swift-program-to-convert-fahrenheit-to-celsius#:~:text=Swift%20provides%20good%20support%20to,to%20convert%20Fahrenheit%20to%20Celsius.
+ *https://www.tutorialspoint*.com/swift-program-to-convert-fahrenheit-to-celsius#:~:text=Swift%20provides%20good%20support%20to,to%20convert%20Fahrenheit%20to%20Celsius.
  *https://stackoverflow.com/questions/56828331/display-a-float-with-specified-decimal-places-in-swiftui
+ *https://stackoverflow.com/questions/26441733/functions-returning-a-string-swift
+ * I used the website above to understand how to make a function that returns a string to get the right SF symbol depending on the weather code
+ 
 * Used this link above to convert farehnheit to celsius
  */
 
@@ -47,37 +50,6 @@ struct ContentView: View {
             
             
             VStack{
-                
-                
-                
- 
-                Button(action: {
-                    
-                    // Creates a new task to run the getCoordinates method asynchronously.
-                    Task {
-                        
-                        // A do-catch block to try calling the async method and
-                        //  handle any errors that might occur.
-                        do {
-                            
-                            // Calls the getCoordinates method asynchronously using await
-                            // If the method throws an error, it will be caught in the catch block
-                            try await viewModel.getCityForLatLong(latitude: latitude ?? 33.8703, longitude: longitude ?? -117.9253)
-                            try await viewModel.getWeatherForLatLong(latitude: latitude ?? 33.8703, longitude: longitude ?? -117.9253)
-                            
-                        } catch {
-                            
-                            // Catches any errors thrown by the
-                            //  getCoordinates method and prints an
-                            //  error message to the console.
-                            print("An error occurred: \(error)")
-                        }
-                    }
-                }) {
-                    Text("Get Weather") // The label for the button
-                        .foregroundColor(Color.white)
-                        .frame(width: 280, height: 50)
-                }
                 if let location1 = locationManager.currentLocation {
                                 Text("Latitude: \(location1.coordinate.latitude)")
                                 Text("Longitude: \(location1.coordinate.longitude)")
@@ -93,9 +65,9 @@ struct ContentView: View {
                 
                 
                 HStack(spacing: 20){
-                    WeatherDayView(dayOfWeek: "TUES", imageName: "cloud.sun.fill", temp: 69)
-                    WeatherDayView(dayOfWeek: "WED", imageName: "cloud.snow.fill", temp: 25)
-                    WeatherDayView(dayOfWeek: "THUR", imageName: "sun.max.fill", temp: 88)
+                    WeatherDayView(dayOfWeek: viewModel.times[0], imageName: "cloud.sun.fill", maxtemp: viewModel.tempMax[0], mintemp: viewModel.tempMin[0])
+                    WeatherDayView(dayOfWeek: viewModel.times[1], imageName: "cloud.snow.fill", maxtemp: viewModel.tempMax[1], mintemp: viewModel.tempMin[1])
+                    WeatherDayView(dayOfWeek: viewModel.times[2], imageName: "sun.max.fill", maxtemp: viewModel.tempMax[2], mintemp: viewModel.tempMin[2])
                     
                     
                 }
@@ -118,7 +90,6 @@ struct ContentView: View {
             
         }
         .onAppear{
-        Task(priority: .background){
             Task {
                 
                 // A do-catch block to try calling the async method and
@@ -128,6 +99,7 @@ struct ContentView: View {
                     // Calls the getCoordinates method asynchronously using await
                     // If the method throws an error, it will be caught in the catch block
                     try await viewModel.getCityForLatLong(latitude: latitude ?? 33.8703, longitude: longitude ?? -117.9253)
+                    try await viewModel.getWeatherForLatLong(latitude: latitude ?? 33.8703, longitude: longitude ?? -117.9253)
                     
                 } catch {
                     
@@ -135,10 +107,9 @@ struct ContentView: View {
                     //  getCoordinates method and prints an
                     //  error message to the console.
                     print("An error occurred: \(error)")
+                    }
                 }
-            }
         }
-    }
     }
         
 }
@@ -153,7 +124,8 @@ struct WeatherDayView: View {
     
     var dayOfWeek: String
     var imageName: String
-    var temp: Int
+    var maxtemp: Float
+    var mintemp: Float
     var body: some View {
         VStack{
             Text(dayOfWeek)
@@ -167,10 +139,10 @@ struct WeatherDayView: View {
                 .aspectRatio(contentMode: .fit)
             //make a frame to give it a fixd size
                 .frame(width: 40, height: 40)
-            Text("High \(temp)°F")
+            Text("High \(Int(maxtemp))°F")
                 .font(.system(size: 20, weight: .medium))
                 .foregroundColor(.white)
-            Text("Low \(temp)°F")
+            Text("Low \(Int(mintemp))°F")
                 .font(.system(size: 20, weight: .medium))
                 .foregroundColor(.white)
             

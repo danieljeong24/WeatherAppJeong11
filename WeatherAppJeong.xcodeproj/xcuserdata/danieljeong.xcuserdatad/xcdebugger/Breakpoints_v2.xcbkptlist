@@ -14,8 +14,8 @@
             filePath = "WeatherAppJeong/ContentView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "38"
-            endingLineNumber = "38"
+            startingLineNumber = "41"
+            endingLineNumber = "41"
             landmarkName = "body"
             landmarkType = "24">
          </BreakpointContent>
@@ -30,10 +30,278 @@
             filePath = "WeatherAppJeong/ContentView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "37"
-            endingLineNumber = "37"
-            landmarkName = "ContentView"
-            landmarkType = "14">
+            startingLineNumber = "40"
+            endingLineNumber = "40"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5E9AA91C-C7C4-44F7-913B-4315EF93E67C"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "WeatherAppJeong/WeatherViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "114"
+            endingLineNumber = "114"
+            landmarkName = "getWeatherForLatLong(latitude:longitude:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "BE9247B6-3E52-4F2A-8BD0-821181B6C442"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "WeatherAppJeong/WeatherViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "115"
+            endingLineNumber = "115"
+            landmarkName = "getWeatherForLatLong(latitude:longitude:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "EA3D6171-5621-421E-9FD8-027A9D14B008"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "WeatherAppJeong/WeatherViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "117"
+            endingLineNumber = "117"
+            landmarkName = "getWeatherForLatLong(latitude:longitude:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B05A415D-6BBC-47AC-AA6E-DE7A3D967A4F"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "WeatherAppJeong/WeatherViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "118"
+            endingLineNumber = "118"
+            landmarkName = "getWeatherForLatLong(latitude:longitude:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "11625EA3-5DA1-4DDD-81FA-9F7457006C6E"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "WeatherAppJeong/WeatherViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "119"
+            endingLineNumber = "119"
+            landmarkName = "getWeatherForLatLong(latitude:longitude:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "BD68AA70-E1F9-4F38-A521-FE0C9A5DD4F9"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "WeatherAppJeong/WeatherViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "121"
+            endingLineNumber = "121"
+            landmarkName = "getWeatherForLatLong(latitude:longitude:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "AEC6EA91-C4EB-44BF-B449-44CA1755C47B"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "WeatherAppJeong/WeatherViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "120"
+            endingLineNumber = "120"
+            landmarkName = "getWeatherForLatLong(latitude:longitude:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "291EBA4D-A525-46FD-AC90-B5D403F4D1C5"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "WeatherAppJeong/ContentView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "101"
+            endingLineNumber = "101"
+            landmarkName = "body"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "291EBA4D-A525-46FD-AC90-B5D403F4D1C5 - 2b0a8af6ab948470"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for closure #1 @Sendable () async -&gt; () in closure #1 @Sendable () async -&gt; Swift.Task&lt;(), Swift.Never&gt; in closure #2 () -&gt; () in WeatherAppJeong.ContentView.body.getter : some"
+                  moduleName = "WeatherAppJeong"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/danieljeong/Documents/Projects/WeatherAppJeong/WeatherAppJeong/ContentView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "99"
+                  endingLineNumber = "99"
+                  offsetFromSymbolStart = "80">
+               </Location>
+               <Location
+                  uuid = "291EBA4D-A525-46FD-AC90-B5D403F4D1C5 - d29f2cbb254e220b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(2) await resume partial function for closure #1 @Sendable () async -&gt; () in closure #1 @Sendable () async -&gt; Swift.Task&lt;(), Swift.Never&gt; in closure #2 () -&gt; () in WeatherAppJeong.ContentView.body.getter : some"
+                  moduleName = "WeatherAppJeong"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/danieljeong/Documents/Projects/WeatherAppJeong/WeatherAppJeong/ContentView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "99"
+                  endingLineNumber = "99"
+                  offsetFromSymbolStart = "36">
+               </Location>
+               <Location
+                  uuid = "291EBA4D-A525-46FD-AC90-B5D403F4D1C5 - 3e8c2b864d5a4076"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for closure #1 @Sendable () async -&gt; () in closure #1 @Sendable () async -&gt; Swift.Task&lt;(), Swift.Never&gt; in closure #2 () -&gt; () in WeatherAppJeong.ContentView.body.getter : some"
+                  moduleName = "WeatherAppJeong"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/danieljeong/Documents/Projects/WeatherAppJeong/WeatherAppJeong/ContentView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "99"
+                  endingLineNumber = "99"
+                  offsetFromSymbolStart = "76">
+               </Location>
+               <Location
+                  uuid = "291EBA4D-A525-46FD-AC90-B5D403F4D1C5 - 5d4e3e5cf5c47a75"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(6) suspend resume partial function for closure #1 @Sendable () async -&gt; () in closure #1 @Sendable () async -&gt; Swift.Task&lt;(), Swift.Never&gt; in closure #2 () -&gt; () in WeatherAppJeong.ContentView.body.getter : some"
+                  moduleName = "WeatherAppJeong"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/danieljeong/Documents/Projects/WeatherAppJeong/WeatherAppJeong/ContentView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "99"
+                  endingLineNumber = "99"
+                  offsetFromSymbolStart = "80">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "086A7DF4-A9AC-4E74-8FE1-842CD23FC098"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "WeatherAppJeong/ContentView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "102"
+            endingLineNumber = "102"
+            landmarkName = "body"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "086A7DF4-A9AC-4E74-8FE1-842CD23FC098 - 3e8c2b864d5a4055"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for closure #1 @Sendable () async -&gt; () in closure #1 @Sendable () async -&gt; Swift.Task&lt;(), Swift.Never&gt; in closure #2 () -&gt; () in WeatherAppJeong.ContentView.body.getter : some"
+                  moduleName = "WeatherAppJeong"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/danieljeong/Documents/Projects/WeatherAppJeong/WeatherAppJeong/ContentView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "100"
+                  endingLineNumber = "100"
+                  offsetFromSymbolStart = "100">
+               </Location>
+               <Location
+                  uuid = "086A7DF4-A9AC-4E74-8FE1-842CD23FC098 - ba488879ef3dfe2a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(4) await resume partial function for closure #1 @Sendable () async -&gt; () in closure #1 @Sendable () async -&gt; Swift.Task&lt;(), Swift.Never&gt; in closure #2 () -&gt; () in WeatherAppJeong.ContentView.body.getter : some"
+                  moduleName = "WeatherAppJeong"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/danieljeong/Documents/Projects/WeatherAppJeong/WeatherAppJeong/ContentView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "100"
+                  endingLineNumber = "100"
+                  offsetFromSymbolStart = "36">
+               </Location>
+               <Location
+                  uuid = "086A7DF4-A9AC-4E74-8FE1-842CD23FC098 - 500dc91566e11c57"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(5) suspend resume partial function for closure #1 @Sendable () async -&gt; () in closure #1 @Sendable () async -&gt; Swift.Task&lt;(), Swift.Never&gt; in closure #2 () -&gt; () in WeatherAppJeong.ContentView.body.getter : some"
+                  moduleName = "WeatherAppJeong"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/danieljeong/Documents/Projects/WeatherAppJeong/WeatherAppJeong/ContentView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "100"
+                  endingLineNumber = "100"
+                  offsetFromSymbolStart = "44">
+               </Location>
+               <Location
+                  uuid = "086A7DF4-A9AC-4E74-8FE1-842CD23FC098 - 6b8f6ea478a8d849"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(7) suspend resume partial function for closure #1 @Sendable () async -&gt; () in closure #1 @Sendable () async -&gt; Swift.Task&lt;(), Swift.Never&gt; in closure #2 () -&gt; () in WeatherAppJeong.ContentView.body.getter : some"
+                  moduleName = "WeatherAppJeong"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/danieljeong/Documents/Projects/WeatherAppJeong/WeatherAppJeong/ContentView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "100"
+                  endingLineNumber = "100"
+                  offsetFromSymbolStart = "80">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

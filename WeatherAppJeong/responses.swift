@@ -24,7 +24,10 @@ struct OpenCageComponents: Decodable{
 
 struct OpenWeatherResponse: Decodable {
     let current_weather: OpenCurrentWeather
+    let daily: OpenDaily
 }
+
+
 
 struct OpenCurrentWeather: Decodable {
     let temperature: Float
@@ -33,5 +36,10 @@ struct OpenCurrentWeather: Decodable {
     let weathercode: Int
 }
 
-
+struct OpenDaily: Decodable{
+    let time: [String]
+    let weathercode: [Int]
+    let temperature_2m_max: [Float]
+    let temperature_2m_min: [Float]
+}
 

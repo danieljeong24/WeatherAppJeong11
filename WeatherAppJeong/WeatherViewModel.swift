@@ -20,6 +20,10 @@ class WeatherViewModel: ObservableObject {
     @Published var currentTemp: Float = 0.0
     @Published var windspeed: Float = 0.0
     @Published var winddirection: Int = 0
+    @Published var times: [String] = ["","",""]
+    @Published var weathercodes: [Int] = [0,0,0]
+    @Published var tempMax: [Float] = [0.0,0.0,0.0]
+    @Published var tempMin: [Float] = [0.0,0.0,0.0]
     
     // A set to store any cancellable operations.
     // This is used to store references to network data tasks
@@ -105,6 +109,13 @@ class WeatherViewModel: ObservableObject {
                 self.currentTemp = weatherResponse.current_weather.temperature
                 self.windspeed = weatherResponse.current_weather.windspeed
                 self.winddirection = weatherResponse.current_weather.winddirection
+                
+                //Get array of times, max_temp, min_temp, weather codes
+                self.times = weatherResponse.daily.time
+                //self.tempMax.append(contentsOf: weatherResponse.daily.temperature_2m_max)
+                self.tempMax = weatherResponse.daily.temperature_2m_max
+                self.tempMin = weatherResponse.daily.temperature_2m_min
+                self.weathercodes = weatherResponse.daily.weathercode
                 
                 //self.winddirection = "Current Temp: \(weatherResponse.current_weather.first?.winddirection ?? "No description available")"
                 
