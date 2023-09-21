@@ -17,8 +17,10 @@
  * I used ChatGPT quite often to debug some of my code. I will attached my prompts in a word document
  *https://developer.apple.com/tutorials/swiftui/drawing-paths-and-shapes
  * Used the link/tutorial to recall how to rotate a symbol
+ *https://stackoverflow.com/questions/39677330/how-does-string-substring-work-in-swift
+ * I used the link above to figure out how substrings work in SwiftUI
  
-* Used this link above to convert farehnheit to celsius
+* ADDITIONAL FEATURE: Two features (1 button allows you to switch from light mode to dark mode. Additionally I added 2 more additional info about the time for sunrise and sunset for that day. 
  */
 
 import CoreLocation
@@ -59,7 +61,7 @@ struct ContentView: View {
                 MainWeatherStatusView(imageName: getSymbol(value: viewModel.currentWeatherCode), temperature: viewModel.currentTemp,
                                       windSpeed: viewModel.windspeed, windDirection: viewModel.winddirection)
                 
-                SunsetSunriseView(sunriseTime: "00:00", sunsetTime: "00:00")
+                SunsetSunriseView(sunriseTime: viewModel.sunriseTimes[0], sunsetTime: viewModel.sunsetTimes[0])
                 
                 
                 Text("3-day Forecast")
@@ -197,7 +199,8 @@ struct SunsetSunriseView: View{
                             .aspectRatio(contentMode: .fit)
                         //make a frame to give it a fixd size
                             .frame(width: 40, height: 40)
-                        Text(sunriseTime)
+                        let subString = sunriseTime.suffix(5)
+                        Text(subString)
                             //order of modifiers matter
                             .font(.system(size: 25, weight: .medium, design: .default))
                             .foregroundColor(.white)
@@ -221,7 +224,9 @@ struct SunsetSunriseView: View{
                             .aspectRatio(contentMode: .fit)
                         //make a frame to give it a fixd size
                             .frame(width: 40, height: 40)
-                        Text(sunriseTime)
+                        //substring of the last 5 characters of the sunSet string 
+                        let subString2 = sunsetTime.suffix(5)
+                        Text(subString2)
                             //order of modifiers matter
                             .font(.system(size: 25, weight: .medium, design: .default))
                             .foregroundColor(.white)

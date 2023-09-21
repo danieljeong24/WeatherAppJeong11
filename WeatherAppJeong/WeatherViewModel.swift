@@ -25,6 +25,8 @@ class WeatherViewModel: ObservableObject {
     @Published var weathercodes: [Int] = [0,0,0]
     @Published var tempMax: [Float] = [0.0,0.0,0.0]
     @Published var tempMin: [Float] = [0.0,0.0,0.0]
+    @Published var sunriseTimes: [String] = ["00:00","00:00","00:00"]
+    @Published var sunsetTimes: [String] = ["00:00","00:00","00:00"]
     
     // A set to store any cancellable operations.
     // This is used to store references to network data tasks
@@ -80,7 +82,7 @@ class WeatherViewModel: ObservableObject {
         
         // Step 1: Constructing the URL for fetching weather data.
         // Creating a URL to fetch weather data based on the provided latitude and longitude.
-        guard let weatherURL = URL(string: "https://api.open-meteo.com/v1/forecast?latitude=\(latitude)&longitude=\(longitude)&daily=weathercode,temperature_2m_max,temperature_2m_min,windspeed_10m_max,winddirection_10m_dominant&current_weather=true&temperature_unit=fahrenheit&windspeed_unit=mph&timezone=America%2FDenver&forecast_days=3")
+        guard let weatherURL = URL(string: "https://api.open-meteo.com/v1/forecast?latitude=\(latitude)&longitude=\(longitude)&daily=weathercode,temperature_2m_max,temperature_2m_min,sunrise,sunset,windspeed_10m_max,winddirection_10m_dominant&current_weather=true&temperature_unit=fahrenheit&windspeed_unit=mph&timezone=America%2FDenver&forecast_days=3")
         else {
             print("Invalid URL")
             return
@@ -117,6 +119,8 @@ class WeatherViewModel: ObservableObject {
                 self.tempMax = weatherResponse.daily.temperature_2m_max
                 self.tempMin = weatherResponse.daily.temperature_2m_min
                 self.weathercodes = weatherResponse.daily.weathercode
+                self.sunriseTimes = weatherResponse.daily.sunrise
+                self.sunsetTimes = weatherResponse.daily.sunset
                 
                 //self.winddirection = "Current Temp: \(weatherResponse.current_weather.first?.winddirection ?? "No description available")"
                 

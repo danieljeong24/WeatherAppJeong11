@@ -41,5 +41,7 @@ struct OpenDaily: Decodable{
     let weathercode: [Int]
     let temperature_2m_max: [Float]
     let temperature_2m_min: [Float]
+    let sunrise: [String]
+    let sunset: [String]
 }
 
