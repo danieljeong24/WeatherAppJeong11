@@ -60,14 +60,14 @@ struct ContentView: View {
 
                 CityTextView(cityName: viewModel.cityName)
                 
-                MainWeatherStatusView(imageName: "cloud.sun.fill", temperature: viewModel.currentTemp,
+                MainWeatherStatusView(imageName: getSymbol(value: viewModel.currentWeatherCode), temperature: viewModel.currentTemp,
                                       windSpeed: viewModel.windspeed, windDirection: viewModel.winddirection)
                 
                 
                 HStack(spacing: 20){
-                    WeatherDayView(dayOfWeek: viewModel.times[0], imageName: "cloud.sun.fill", maxtemp: viewModel.tempMax[0], mintemp: viewModel.tempMin[0])
-                    WeatherDayView(dayOfWeek: viewModel.times[1], imageName: "cloud.snow.fill", maxtemp: viewModel.tempMax[1], mintemp: viewModel.tempMin[1])
-                    WeatherDayView(dayOfWeek: viewModel.times[2], imageName: "sun.max.fill", maxtemp: viewModel.tempMax[2], mintemp: viewModel.tempMin[2])
+                    WeatherDayView(dayOfWeek: viewModel.times[0], imageName: getSymbol(value: viewModel.weathercodes[0]), maxtemp: viewModel.tempMax[0], mintemp: viewModel.tempMin[0])
+                    WeatherDayView(dayOfWeek: viewModel.times[1], imageName: getSymbol(value: viewModel.weathercodes[1]), maxtemp: viewModel.tempMax[1], mintemp: viewModel.tempMin[1])
+                    WeatherDayView(dayOfWeek: viewModel.times[2], imageName: getSymbol(value: viewModel.weathercodes[2]), maxtemp: viewModel.tempMax[2], mintemp: viewModel.tempMin[2])
                     
                     
                 }
@@ -186,7 +186,7 @@ struct MainWeatherStatusView: View{
                 // fits it within the frame
                 .aspectRatio(contentMode: .fit)
                 //make a frame to give it a fixd size
-                .frame(width: 100, height: 100)
+                .frame(width: 50, height: 50)
                 
             HStack{
                 Text("\(Int(temperature))°F |" )
@@ -200,6 +200,7 @@ struct MainWeatherStatusView: View{
                 .foregroundColor(.white)
                 
             }
+            
     
        
                 
@@ -210,5 +211,63 @@ struct MainWeatherStatusView: View{
         }
         .padding(.bottom, 10)
     }
+}
+
+func getSymbol(value: Int) -> String{
+    var symbolstring = ""
+    switch value{
+        //clear sky
+    case 0:
+        //
+        symbolstring = "sun.max.fill"
+    //Mainly Clear
+    case 1:
+        symbolstring = "sun.max.fill"
+    //Partly Cloudy
+    case 2:
+        symbolstring = "cloud.sun.fill"
+    //Overcast
+    case 3:
+        symbolstring = "cloud.fill"
+    //Fog
+    case 45,48:
+        symbolstring = "cloud.fog.fill"
+    //Drizzle
+    case 51,53,55:
+        symbolstring = "cloud.drizzle.fill"
+    //Freezing Drizzle
+    case 56,57:
+        symbolstring = "cloud.hail.fill"
+    //Rain
+    case 61,63,65:
+        symbolstring = "cloud.rain.fill"
+    //Freezing Rain
+    case 66,67:
+        symbolstring = "cloud.hail.fill"
+    //Snow Fall
+    case 71,73,75:
+        symbolstring = "cloud.snow.fill"
+    //Snow Grains
+    case 77:
+        symbolstring = ""
+    //Rain Showers
+    case 80,81,82:
+        symbolstring = "cloud.heavyrain.circle.fill"
+    //Snow showers
+    case 85,86:
+        symbolstring = "cloud.sleet.fill"
+    //Thunderstorm
+    case 95:
+        symbolstring = "cloud.bolt.rain.fill"
+    //Thunderstorm with hail
+    case 96, 99:
+        symbolstring = "cloud.bolt.rain.circle"
+    default:
+        return "hurricane"
+    }
+
+    
+    
+    return symbolstring
 }
 

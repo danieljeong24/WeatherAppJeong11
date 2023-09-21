@@ -20,6 +20,7 @@ class WeatherViewModel: ObservableObject {
     @Published var currentTemp: Float = 0.0
     @Published var windspeed: Float = 0.0
     @Published var winddirection: Int = 0
+    @Published var currentWeatherCode: Int = 0
     @Published var times: [String] = ["","",""]
     @Published var weathercodes: [Int] = [0,0,0]
     @Published var tempMax: [Float] = [0.0,0.0,0.0]
@@ -109,6 +110,7 @@ class WeatherViewModel: ObservableObject {
                 self.currentTemp = weatherResponse.current_weather.temperature
                 self.windspeed = weatherResponse.current_weather.windspeed
                 self.winddirection = weatherResponse.current_weather.winddirection
+                self.currentWeatherCode = weatherResponse.current_weather.weathercode
                 
                 //Get array of times, max_temp, min_temp, weather codes
                 self.times = weatherResponse.daily.time
